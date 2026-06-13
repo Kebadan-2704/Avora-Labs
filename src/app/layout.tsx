@@ -90,7 +90,7 @@ export default function RootLayout({
     ],
     contactPoint: {
       "@type": "ContactPoint",
-      email: "hello@avoralabs.com",
+      email: "infoavoralabs@gmail.com",
       contactType: "sales",
       availableLanguage: ["English"]
     },

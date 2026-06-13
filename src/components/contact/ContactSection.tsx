@@ -140,16 +140,21 @@ export default function ContactSection() {
                 <div>
                   <div style={labelStyle}>Email</div>
                   <a
-                    href="mailto:hello@avoralabs.com"
+                    href="mailto:infoavoralabs@gmail.com"
+                    className="interactive-hover"
                     onMouseEnter={() => enterHover("pointer")}
                     onMouseLeave={leaveHover}
                     style={{
-                      fontSize: "1.125rem",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "var(--space-4)",
                       color: "var(--color-text)",
                       textDecoration: "none",
                     }}
                   >
-                    hello@avoralabs.com
+                    <span style={{ fontSize: "1.125rem", fontWeight: 500 }}>
+                      infoavoralabs@gmail.com
+                    </span>
                   </a>
                 </div>
 

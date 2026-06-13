@@ -233,14 +233,14 @@ export default function Footer() {
             </h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-3)" }}>
               <a 
-                href="mailto:hello@avoralabs.com"
+                href="mailto:infoavoralabs@gmail.com"
                 onMouseEnter={() => enterHover("pointer")}
                 onMouseLeave={leaveHover}
                 style={{ fontSize: "0.9375rem", color: "var(--color-text-muted)", textDecoration: "none", transition: "color 0.3s ease" }}
                 onMouseOver={(e) => (e.currentTarget.style.color = "var(--color-primary)")}
                 onMouseOut={(e) => (e.currentTarget.style.color = "var(--color-text-muted)")}
               >
-                hello@avoralabs.com
+                infoavoralabs@gmail.com
               </a>
               <span style={{ fontSize: "0.9375rem", color: "var(--color-text-muted)" }}>
                 +91 94434 37081
