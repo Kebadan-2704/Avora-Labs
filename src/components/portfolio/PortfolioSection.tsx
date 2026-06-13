@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useCursor } from "@/providers/CursorProvider";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,6 +18,7 @@ const PROJECTS = [
     impact: "Increased organic lead generation by 240%.",
     link: "https://baava-technologies.vercel.app/",
     tags: ["Corporate", "Headless", "Next.js"],
+    image: "/project_baava.png",
   },
   {
     title: "Billing Software",
@@ -26,6 +28,7 @@ const PROJECTS = [
     impact: "Reduced user onboarding time by 65%.",
     link: "https://billing-software-cyan.vercel.app/company-selection",
     tags: ["SaaS", "Dashboard", "Finance"],
+    image: "/project_billing.png",
   },
   {
     title: "Costa Devices",
@@ -35,6 +38,7 @@ const PROJECTS = [
     impact: "Boosted session duration by 180%.",
     link: "https://costa-devices-kappa.vercel.app/",
     tags: ["Enterprise", "Commerce"],
+    image: "/project_costa.png",
   },
   {
     title: "TPH Management",
@@ -44,6 +48,7 @@ const PROJECTS = [
     impact: "Automated 40+ hours/week.",
     link: "https://tph-management-system.vercel.app/login",
     tags: ["Admin", "System"],
+    image: "/project_tph.png",
   },
   {
     title: "Amos Frank",
@@ -53,6 +58,7 @@ const PROJECTS = [
     impact: "Increased inbound high-ticket inquiries by 3x.",
     link: "https://amos-frank.vercel.app/",
     tags: ["Interactive", "Creative", "Next.js"],
+    image: "/project_amos.png",
   }
 ];
 
@@ -221,10 +227,28 @@ export default function PortfolioSection() {
                   <p style={{ 
                     fontSize: i === 0 || i === 4 ? "1.125rem" : "1rem", 
                     color: "var(--color-text-secondary)", 
-                    lineHeight: 1.6 
+                    lineHeight: 1.6,
+                    marginBottom: "var(--space-6)"
                   }}>
                     {project.solution}
                   </p>
+
+                  {/* 3D Visual */}
+                  <div style={{
+                    width: "100%",
+                    height: i === 0 ? "400px" : i === 4 ? "300px" : "200px",
+                    position: "relative",
+                    borderRadius: "var(--radius-lg)",
+                    overflow: "hidden",
+                    border: "1px solid rgba(250, 249, 246, 0.05)",
+                  }}>
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      style={{ objectFit: "cover", objectPosition: "center" }}
+                    />
+                  </div>
                 </div>
 
                 {/* Bottom Section: Metric */}
