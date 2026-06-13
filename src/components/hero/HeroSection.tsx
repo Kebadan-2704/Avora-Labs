@@ -316,7 +316,7 @@ export default function HeroSection() {
           </MagneticButton>
           <MagneticButton intensity={0.2}>
             <a
-              href="#portfolio"
+              href="/portfolio"
               className="btn-outline"
               onMouseEnter={() => enterHover("pointer")}
               onMouseLeave={leaveHover}
