@@ -243,8 +243,8 @@ export default function HeroSection() {
             marginTop: 0,
             marginBottom: "0.5rem",
             fontSize: "clamp(3.5rem, 9vw, 8rem)",
-            fontWeight: 700,
-            letterSpacing: "-0.04em",
+            fontWeight: 900,
+            letterSpacing: "-0.05em",
             lineHeight: 0.95,
             fontFamily: "var(--font-display)",
             color: "var(--color-text)",
@@ -252,12 +252,12 @@ export default function HeroSection() {
         >
           <div style={{ overflow: "hidden" }}>
             <span className="hero-line" style={{ display: "block", willChange: "transform" }}>
-              We engineer
+              We build digital
             </span>
           </div>
           <div style={{ overflow: "hidden" }}>
             <span className="hero-line" style={{ display: "block", willChange: "transform" }}>
-              software that
+              systems that
             </span>
           </div>
           <div style={{ overflow: "hidden" }}>
@@ -268,7 +268,7 @@ export default function HeroSection() {
                 willChange: "transform",
               }}
             >
-              scales.
+              generate revenue.
             </span>
           </div>
         </h2>
@@ -283,11 +283,10 @@ export default function HeroSection() {
             maxWidth: "520px",
             marginTop: 0,
             marginBottom: "0.5rem",
+            fontWeight: 400,
           }}
         >
-          Bespoke digital architecture for ambitious teams. From AI-powered
-          platforms to immersive web experiences — built to command authority
-          and drive revenue.
+          Custom websites, AI agents, business automation and scalable software for ambitious companies. We don't just write code — we build growth engines.
         </p>
 
         {/* CTAs */}

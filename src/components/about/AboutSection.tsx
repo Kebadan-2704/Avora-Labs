@@ -4,30 +4,12 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import ClientMarquee from "./ClientMarquee";
-
-gsap.registerPlugin(ScrollTrigger);
-
-type Stat = {
-  value: number;
-  suffix: string;
-  label: string;
-  prefix?: string;
-};
-
-const STATS: Stat[] = [
-  { value: 150, suffix: "+", label: "Projects Delivered" },
-  { value: 80, suffix: "+", label: "Global Clients" },
-  { value: 200, suffix: "+", label: "Automations Built" },
-];
 
 
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
-  const counterRefs = useRef<HTMLSpanElement[]>([]);
   const testimonialRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -38,32 +20,6 @@ export default function AboutSection() {
           { y: 40, opacity: 0 },
           { y: 0, opacity: 1, duration: 1, ease: "power4.out", stagger: 0.15,
             scrollTrigger: { trigger: headingRef.current, start: "top 80%" }
-          }
-        );
-      }
-
-      // Stats counters
-      if (statsRef.current) {
-        STATS.forEach((stat, i) => {
-          const el = counterRefs.current[i];
-          if (!el) return;
-
-          const obj = { value: 0 };
-          gsap.to(obj, {
-            value: stat.value,
-            duration: 2.5,
-            ease: "power2.out",
-            scrollTrigger: { trigger: statsRef.current, start: "top 80%" },
-            onUpdate: () => {
-              el.textContent = `${stat.prefix || ""}${Math.floor(obj.value)}${stat.suffix}`;
-            },
-          });
-        });
-
-        gsap.fromTo(statsRef.current.children, 
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", stagger: 0.1,
-            scrollTrigger: { trigger: statsRef.current, start: "top 85%" }
           }
         );
       }
@@ -88,13 +44,10 @@ export default function AboutSection() {
       id="about"
       style={{ background: "var(--color-bg)", padding: 0 }}
     >
-      {/* Client marquee */}
-      <ClientMarquee />
-
       <div className="container" style={{ paddingTop: "var(--section-padding)", paddingBottom: "var(--section-padding)" }}>
         {/* Header */}
         <div ref={headingRef} style={{ marginBottom: "var(--space-16)" }}>
-          <div className="section-label">About Avora Labs</div>
+          <div className="section-label">A Letter from the Founder</div>
           <div
             style={{
               display: "flex",
@@ -104,17 +57,27 @@ export default function AboutSection() {
             }}
           >
             <div style={{ flex: "1 1 50%", minWidth: "320px" }}>
-            <h2>
-              We don&apos;t build websites.<br />
-              We engineer digital assets.
+            <h2 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}>
+              "We don't build toys.<br />
+              We build engines that drive revenue."
             </h2>
             </div>
             <div style={{ flex: "1 1 40%", minWidth: "320px", display: "flex", flexDirection: "column", justifyContent: "flex-end", gap: "var(--space-6)" }}>
-              <p className="text-large">
-                Founded in 2021, Avora Labs partners with visionary founders and
-                enterprise teams to build software that doesn&apos;t just work — it
-                transforms. Every project is a masterpiece of performance and design.
-              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-4)" }}>
+                <p className="text-large">
+                  When I started Avora Labs, I noticed a massive problem in the agency space.
+                  Too many developers were focused on building things that looked pretty, but failed
+                  to move the needle for the actual business.
+                </p>
+                <p className="text-large">
+                  A website or application should not be an expense. It should be your highest-performing sales asset, 
+                  your most reliable employee, and the foundation of your digital growth.
+                </p>
+                <p className="text-large">
+                  That is why we don't just write code. We partner with you to understand your business model,
+                  identify the bottlenecks, and engineer digital systems that solve real problems.
+                </p>
+              </div>
               
               <div style={{ display: "flex", alignItems: "center", gap: "var(--space-4)" }}>
                 <Image 
@@ -142,53 +105,6 @@ export default function AboutSection() {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Stats Row */}
-        <div
-          ref={statsRef}
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-            gap: "var(--space-8)",
-            marginBottom: "var(--section-padding)",
-            paddingTop: "var(--space-10)",
-            borderTop: "1px solid var(--glass-border)",
-          }}
-        >
-          {STATS.map((stat, i) => (
-            <div key={stat.label}>
-              <span
-                ref={(el) => {
-                  if (el) counterRefs.current[i] = el;
-                }}
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: "clamp(2.5rem, 5vw, 4rem)",
-                  fontWeight: 700,
-                  letterSpacing: "-0.04em",
-                  display: "block",
-                  color: "var(--color-text)",
-                  lineHeight: 1,
-                }}
-              >
-                {stat.prefix || ""}0{stat.suffix}
-              </span>
-              <span
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "0.75rem",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  color: "var(--color-text-muted)",
-                  display: "block",
-                  marginTop: "var(--space-2)",
-                }}
-              >
-                {stat.label}
-              </span>
-            </div>
-          ))}
         </div>
 
         {/* Testimonials removed as requested */}

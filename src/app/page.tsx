@@ -23,6 +23,9 @@ const ProcessSection = dynamic(
 const AboutSection = dynamic(() => import("@/components/about/AboutSection"), {
   ssr: false,
 });
+const ImpactSection = dynamic(() => import("@/components/about/ImpactSection"), {
+  ssr: false,
+});
 const TechnologySection = dynamic(
   () => import("@/components/technology/TechnologySection"),
   { ssr: false }
@@ -60,6 +63,7 @@ export default function Home() {
         <main>
           {/* New section order: Show → Tell → Prove → Close */}
           <HeroSection />
+          <ImpactSection />
           <PortfolioSection />
           <ServicesSection />
           <ProcessSection />

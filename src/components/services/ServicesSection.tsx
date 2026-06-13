@@ -4,34 +4,28 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useCursor } from "@/providers/CursorProvider";
-import { Code2, Smartphone, Brain, Palette, ArrowUpRight } from "lucide-react";
+import { Zap, Brain, ShieldCheck, ArrowUpRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SERVICES = [
+const PILLARS = [
   {
-    icon: Code2,
-    title: "Digital Architecture",
-    description: "Full-stack platforms built for scale. From SaaS products to enterprise portals — we architect software that handles millions of users without breaking a sweat.",
-    capabilities: ["Web Applications", "SaaS Platforms", "API Design", "Cloud Infrastructure"],
-  },
-  {
-    icon: Smartphone,
-    title: "Enterprise Applications",
-    description: "Cross-platform mobile and desktop applications with native performance. Real-time sync, offline capability, and seamless user experiences.",
-    capabilities: ["React Native", "Progressive Web Apps", "Real-Time Systems", "Cross-Platform"],
+    icon: Zap,
+    title: "Faster",
+    description: "Rapid development cycles. We ship production-ready enterprise software in weeks, not months. Speed is a feature.",
+    capabilities: ["Agile Sprints", "Next.js Architecture", "Rapid Prototyping"],
   },
   {
     icon: Brain,
-    title: "AI & Automation",
-    description: "GPT-powered chatbots, automated workflows, and intelligent analytics. We build systems that learn, adapt, and drive measurable business outcomes.",
-    capabilities: ["AI Chatbots", "Workflow Automation", "Predictive Analytics", "NLP Integration"],
+    title: "Smarter",
+    description: "AI-powered solutions natively integrated. We don't just build software, we build intelligent systems that automate workflows.",
+    capabilities: ["AI Agents", "Automated Workflows", "Predictive Analytics"],
   },
   {
-    icon: Palette,
-    title: "Brand & Interface",
-    description: "Award-caliber design systems and immersive digital experiences. Every pixel is intentional. Every interaction is crafted to convert.",
-    capabilities: ["UI/UX Design", "Design Systems", "Motion Design", "Brand Strategy"],
+    icon: ShieldCheck,
+    title: "Reliable",
+    description: "Enterprise-grade architecture. Built on serverless infrastructure designed for 99.9% uptime and infinite scale.",
+    capabilities: ["Zero Downtime", "Serverless Edge", "Military-grade Security"],
   },
 ];
 
@@ -76,13 +70,12 @@ export default function ServicesSection() {
       <div className="container">
         {/* Header */}
         <div ref={headingRef} style={{ marginBottom: "var(--space-16)", maxWidth: "600px" }}>
-          <div className="section-label">What We Do</div>
+          <div className="section-label">Why Avora</div>
           <h2 style={{ maxWidth: "600px", marginBottom: "var(--space-6)" }}>
-            Capabilities that engineer growth.
+            The Avora Advantage.
           </h2>
           <p className="text-large">
-            Every service is designed to deliver measurable business impact —
-            not just deliverables.
+            We operate at the intersection of high-speed execution and uncompromising quality.
           </p>
         </div>
 
@@ -91,12 +84,11 @@ export default function ServicesSection() {
           ref={cardsRef}
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
             gap: "var(--space-4)",
           }}
-          className="grid-cols-1 md:grid-cols-2"
         >
-          {SERVICES.map((service) => {
+          {PILLARS.map((service) => {
             const Icon = service.icon;
             return (
               <div

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Search, Lightbulb, Code2, TestTube, Rocket } from "lucide-react";
+import { Search, Lightbulb, Code2, Rocket, TrendingUp } from "lucide-react";
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -12,37 +12,37 @@ const STEPS = [
   {
     number: "01",
     title: "Discovery",
-    description: "Deep dive into your business, users, and goals. We audit your existing systems, interview stakeholders, and map the competitive landscape to build a bullet-proof strategy.",
+    description: "Deep dive into your business, users, and goals. We audit your existing systems, interview stakeholders, and map the competitive landscape.",
     icon: Search,
-    accent: "var(--color-primary)",
+    accent: "var(--color-text)",
   },
   {
     number: "02",
-    title: "Architecture",
-    description: "We design the technical blueprint — information architecture, system design, wireframes, and prototypes. Every decision is validated before a single line of code is written.",
+    title: "Strategy",
+    description: "We design the technical blueprint — information architecture, system design, wireframes, and prototypes. Every decision is validated first.",
     icon: Lightbulb,
-    accent: "#3178C6",
+    accent: "var(--color-text)",
   },
   {
     number: "03",
-    title: "Engineering",
+    title: "Build",
     description: "Agile sprints with weekly deliverables. Full transparency with staging environments, code reviews, and real-time progress updates. No black boxes.",
     icon: Code2,
-    accent: "#68A063",
+    accent: "var(--color-text)",
   },
   {
     number: "04",
-    title: "Testing & QA",
-    description: "Rigorous cross-browser, cross-device, and performance testing. Security audits, load testing, and accessibility compliance. Nothing ships without our seal of approval.",
-    icon: TestTube,
-    accent: "#DC382D",
+    title: "Launch",
+    description: "Rigorous testing and zero-downtime deployment. We handle infrastructure setup, CI/CD pipelines, and performance monitoring.",
+    icon: Rocket,
+    accent: "var(--color-text)",
   },
   {
     number: "05",
-    title: "Launch & Scale",
-    description: "Zero-downtime deployment with monitoring, analytics, and 60-day post-launch support. We stay in the trenches until your product is thriving in production.",
-    icon: Rocket,
-    accent: "#C5A059",
+    title: "Growth",
+    description: "Post-launch analytics, conversion rate optimization, and scaling infrastructure. We stay in the trenches until your product is thriving.",
+    icon: TrendingUp,
+    accent: "var(--color-text)",
   },
 ];
 
