@@ -23,11 +23,6 @@ export const metadata: Metadata = {
   authors: [{ name: "Avora Labs" }],
   creator: "Avora Labs",
   metadataBase: new URL("https://avoralabs.com"),
-  icons: {
-    icon: "/Transparent Logo.png",
-    shortcut: "/Transparent Logo.png",
-    apple: "/Transparent Logo.png",
-  },
   openGraph: {
     type: "website",
     locale: "en_US",

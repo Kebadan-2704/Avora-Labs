@@ -42,14 +42,10 @@ export default function BookingWidget() {
       {/* Floating Action Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="group"
+        className="group md:bottom-6 md:right-6 md:w-[60px] md:h-[60px] bottom-[100px] right-4 w-[50px] h-[50px]"
         style={{
           position: "fixed",
-          bottom: "var(--space-6)",
-          right: "var(--space-6)",
           zIndex: 9999,
-          width: "60px",
-          height: "60px",
           borderRadius: "50%",
           background: "var(--color-text)",
           color: "var(--color-bg)",
