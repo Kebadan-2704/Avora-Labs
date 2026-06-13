@@ -249,17 +249,17 @@ export default function HeroSection() {
             color: "var(--color-text)",
           }}
         >
-          <div style={{ overflow: "hidden", paddingTop: "0.1em", marginTop: "-0.1em", paddingBottom: "0.2em", marginBottom: "-0.2em" }}>
+          <div style={{ overflow: "hidden", paddingTop: "0.2em", marginTop: "-0.2em", paddingBottom: "0.4em", marginBottom: "-0.4em" }}>
             <span className="hero-line" style={{ display: "block", willChange: "transform" }}>
               We build digital
             </span>
           </div>
-          <div style={{ overflow: "hidden", paddingTop: "0.1em", marginTop: "-0.1em", paddingBottom: "0.2em", marginBottom: "-0.2em" }}>
+          <div style={{ overflow: "hidden", paddingTop: "0.2em", marginTop: "-0.2em", paddingBottom: "0.4em", marginBottom: "-0.4em" }}>
             <span className="hero-line" style={{ display: "block", willChange: "transform" }}>
               systems that
             </span>
           </div>
-          <div style={{ overflow: "hidden", paddingTop: "0.1em", marginTop: "-0.1em", paddingBottom: "0.2em", marginBottom: "-0.2em" }}>
+          <div style={{ overflow: "hidden", paddingTop: "0.2em", marginTop: "-0.2em", paddingBottom: "0.4em", marginBottom: "-0.4em" }}>
             <span
               className="hero-line text-gradient-gold-animated"
               style={{
