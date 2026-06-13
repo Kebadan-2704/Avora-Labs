@@ -254,6 +254,8 @@ p {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  padding-bottom: 0.2em;
+  padding-top: 0.1em;
 }
 
 .text-gradient-gold-animated {
@@ -262,6 +264,8 @@ p {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  padding-bottom: 0.2em;
+  padding-top: 0.1em;
   animation: goldShimmer 4s ease-in-out infinite;
 }
 
