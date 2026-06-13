@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 export default function BookingWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState<"greeting" | "calendar" | "success">("greeting");
+  const [selectedDate, setSelectedDate] = useState(1);
 
   // Prevent background scrolling when open on mobile
   useEffect(() => {
@@ -220,10 +221,11 @@ export default function BookingWidget() {
                     {/* Premium Calendar UI */}
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.75rem", marginBottom: "var(--space-8)" }}>
                       {["Mon", "Tue", "Wed", "Thu"].map((day, i) => {
-                        const isSelected = i === 1;
+                        const isSelected = i === selectedDate;
                         return (
                           <div
                             key={day}
+                            onClick={() => setSelectedDate(i)}
                             style={{
                               padding: "0.75rem 0",
                               textAlign: "center",
