@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useCursor } from "@/providers/CursorProvider";
 import { ExternalLink } from "lucide-react";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -150,11 +151,10 @@ export default function PortfolioSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const { enterHover, leaveHover } = useCursor();
-  const [showAll, setShowAll] = useState(false);
 
-  const visibleProjects = showAll ? PROJECTS : PROJECTS.slice(0, 3);
+  const visibleProjects = PROJECTS.slice(0, 3);
 
-  // Re-run animations and scroll triggers when showAll changes
+  // Re-run animations and scroll triggers
   useEffect(() => {
     // Refresh ScrollTrigger so it knows about the new page height
     setTimeout(() => {
@@ -173,7 +173,7 @@ export default function PortfolioSection() {
       });
     }, sectionRef);
     return () => ctx.revert();
-  }, [showAll]);
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -358,30 +358,18 @@ export default function PortfolioSection() {
         </div>
 
         {/* View All Button */}
-        {PROJECTS.length > 3 && (
-          <div style={{ display: "flex", justifyContent: "center", marginTop: "var(--space-16)" }}>
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "var(--space-16)" }}>
+          <Link href="/portfolio" passHref>
             <button 
-              onClick={() => {
-                setShowAll(!showAll);
-                if (showAll) {
-                  // If closing, scroll back to the portfolio section top
-                  setTimeout(() => {
-                    const el = document.getElementById("portfolio");
-                    if (el) {
-                      window.scrollTo({ top: el.offsetTop - 80, behavior: "smooth" });
-                    }
-                  }, 50);
-                }
-              }}
               onMouseEnter={() => enterHover("pointer")}
               onMouseLeave={leaveHover}
               className="btn-gold"
               style={{ padding: "1rem 3rem", fontSize: "1.125rem" }}
             >
-              {showAll ? "Show Less" : "View All Portfolio"}
+              View All Portfolio
             </button>
-          </div>
-        )}
+          </Link>
+        </div>
       </div>
     </section>
   );
