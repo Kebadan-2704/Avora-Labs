@@ -235,7 +235,6 @@ export default function HeroSection() {
           Top Web Development & AI Software Agency in India
         </h1>
 
-        {/* Main visual heading (now H2 for SEO hierarchy) */}
         <h2
           ref={headlineRef}
           style={{
@@ -250,17 +249,17 @@ export default function HeroSection() {
             color: "var(--color-text)",
           }}
         >
-          <div style={{ overflow: "hidden" }}>
+          <div style={{ overflow: "hidden", paddingTop: "0.1em", marginTop: "-0.1em", paddingBottom: "0.2em", marginBottom: "-0.2em" }}>
             <span className="hero-line" style={{ display: "block", willChange: "transform" }}>
               We build digital
             </span>
           </div>
-          <div style={{ overflow: "hidden" }}>
+          <div style={{ overflow: "hidden", paddingTop: "0.1em", marginTop: "-0.1em", paddingBottom: "0.2em", marginBottom: "-0.2em" }}>
             <span className="hero-line" style={{ display: "block", willChange: "transform" }}>
               systems that
             </span>
           </div>
-          <div style={{ overflow: "hidden" }}>
+          <div style={{ overflow: "hidden", paddingTop: "0.1em", marginTop: "-0.1em", paddingBottom: "0.2em", marginBottom: "-0.2em" }}>
             <span
               className="hero-line text-gradient-gold-animated"
               style={{
