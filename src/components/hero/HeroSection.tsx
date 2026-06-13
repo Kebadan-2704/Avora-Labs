@@ -268,7 +268,7 @@ export default function HeroSection() {
                 paddingBottom: "0.5em"
               }}
             >
-              generate revenue.
+              Generate Revenue.
             </span>
           </div>
         </h2>
