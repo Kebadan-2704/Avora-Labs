@@ -42,7 +42,7 @@ export default function MagneticButton({
     setPosition({ x: 0, y: 0 });
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleClick = () => {
     haptics.lightClick();
     audio.playClick();
     if (onClick) onClick();

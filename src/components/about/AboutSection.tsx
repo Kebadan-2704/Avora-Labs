@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Star } from "lucide-react";
+import Image from "next/image";
 import ClientMarquee from "./ClientMarquee";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -21,7 +21,7 @@ const STATS: Stat[] = [
   { value: 200, suffix: "+", label: "Automations Built" },
 ];
 
-const TESTIMONIALS = [];
+
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -117,9 +117,11 @@ export default function AboutSection() {
               </p>
               
               <div style={{ display: "flex", alignItems: "center", gap: "var(--space-4)" }}>
-                <img 
+                <Image 
                   src="/Founder%20Pic.jpeg" 
                   alt="Keba - Founder of Avora Labs, Premium Software Engineering Agency in Coimbatore" 
+                  width={64}
+                  height={64}
                   style={{ 
                     width: "64px", 
                     height: "64px", 

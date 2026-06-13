@@ -77,7 +77,7 @@ function Scene({ src, isHovered }: { src: string; isHovered: boolean }) {
   );
 }
 
-export default function LiquidImage({ src, alt }: { src: string; alt: string }) {
+export default function LiquidImage({ src }: { src: string; alt?: string }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (

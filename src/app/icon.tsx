@@ -30,6 +30,7 @@ export default function Icon() {
           border: '12px solid rgba(17,17,17,0.08)',
         }}
       >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={logoBase64}
           alt="Logo"

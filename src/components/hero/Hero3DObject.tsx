@@ -1,12 +1,13 @@
 "use client";
 
-import { Suspense, useRef, useMemo } from "react";
+import { Suspense, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Float, MeshDistortMaterial, Environment, ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
 
 function AbstractShape() {
   const meshRef = useRef<THREE.Mesh>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const materialRef = useRef<any>(null);
   const { mouse, viewport } = useThree();
 
