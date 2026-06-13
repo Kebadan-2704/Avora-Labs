@@ -249,22 +249,23 @@ export default function HeroSection() {
             color: "var(--color-text)",
           }}
         >
-          <div style={{ overflow: "hidden", paddingTop: "0.2em", marginTop: "-0.2em", paddingBottom: "0.4em", marginBottom: "-0.4em" }}>
+          <div style={{ overflow: "hidden", paddingTop: "0.2em", marginTop: "-0.2em", paddingBottom: "0.8em", marginBottom: "-0.8em" }}>
             <span className="hero-line" style={{ display: "block", willChange: "transform" }}>
               We build digital
             </span>
           </div>
-          <div style={{ overflow: "hidden", paddingTop: "0.2em", marginTop: "-0.2em", paddingBottom: "0.4em", marginBottom: "-0.4em" }}>
+          <div style={{ overflow: "hidden", paddingTop: "0.2em", marginTop: "-0.2em", paddingBottom: "0.8em", marginBottom: "-0.8em" }}>
             <span className="hero-line" style={{ display: "block", willChange: "transform" }}>
               systems that
             </span>
           </div>
-          <div style={{ overflow: "hidden", paddingTop: "0.2em", marginTop: "-0.2em", paddingBottom: "0.4em", marginBottom: "-0.4em" }}>
+          <div style={{ overflow: "hidden", paddingTop: "0.2em", marginTop: "-0.2em", paddingBottom: "0.8em", marginBottom: "-0.8em" }}>
             <span
               className="hero-line text-gradient-gold-animated"
               style={{
                 display: "block",
                 willChange: "transform",
+                paddingBottom: "0.5em"
               }}
             >
               generate revenue.
