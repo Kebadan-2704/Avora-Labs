@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { MessageSquare, Calendar, X, ChevronRight, Clock, Video } from "lucide-react";
+import { MessageSquare, Calendar, X, ChevronRight, Clock, Video, ArrowLeft } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function BookingWidget() {
@@ -215,33 +215,55 @@ export default function BookingWidget() {
                     exit={{ opacity: 0, x: 20 }}
                     style={{ flex: 1, display: "flex", flexDirection: "column" }}
                   >
-                    <h4 style={{ marginBottom: "var(--space-4)" }}>Select a Time</h4>
+                    <h3 style={{ fontSize: "1.75rem", fontWeight: 800, marginBottom: "var(--space-6)" }}>Select a Time</h3>
                     
-                    {/* Dummy Calendar UI */}
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "var(--space-2)", marginBottom: "var(--space-6)" }}>
-                      {["Mon", "Tue", "Wed", "Thu"].map((day, i) => (
-                        <div
-                          key={day}
-                          style={{
-                            padding: "var(--space-2) 0",
-                            textAlign: "center",
-                            background: i === 1 ? "var(--color-text)" : "var(--color-bg-secondary)",
-                            color: i === 1 ? "var(--color-bg)" : "var(--color-text)",
-                            borderRadius: "var(--radius-sm)",
-                            border: "1px solid var(--glass-border)",
-                            cursor: "pointer",
-                          }}
-                        >
-                          <div style={{ fontSize: "0.75rem", opacity: 0.8 }}>{day}</div>
-                          <div style={{ fontWeight: 600 }}>{14 + i}</div>
-                        </div>
-                      ))}
+                    {/* Premium Calendar UI */}
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0.75rem", marginBottom: "var(--space-8)" }}>
+                      {["Mon", "Tue", "Wed", "Thu"].map((day, i) => {
+                        const isSelected = i === 1;
+                        return (
+                          <div
+                            key={day}
+                            style={{
+                              padding: "0.75rem 0",
+                              textAlign: "center",
+                              background: isSelected ? "var(--color-primary)" : "var(--color-bg-tertiary)",
+                              color: isSelected ? "var(--color-bg)" : "var(--color-text)",
+                              borderRadius: "var(--radius-md)",
+                              border: isSelected ? "1px solid var(--color-primary)" : "1px solid var(--glass-border)",
+                              cursor: "pointer",
+                              transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+                              boxShadow: isSelected ? "0 8px 20px rgba(197, 160, 89, 0.35)" : "none",
+                              transform: isSelected ? "scale(1.05)" : "scale(1)",
+                            }}
+                            onMouseEnter={(e) => {
+                              if (!isSelected) {
+                                e.currentTarget.style.background = "var(--color-bg-secondary)";
+                                e.currentTarget.style.borderColor = "var(--color-text-muted)";
+                              }
+                            }}
+                            onMouseLeave={(e) => {
+                              if (!isSelected) {
+                                e.currentTarget.style.background = "var(--color-bg-tertiary)";
+                                e.currentTarget.style.borderColor = "var(--glass-border)";
+                              }
+                            }}
+                          >
+                            <div style={{ fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.05em", opacity: isSelected ? 1 : 0.6, marginBottom: "4px" }}>{day}</div>
+                            <div style={{ fontWeight: 800, fontSize: "1.25rem" }}>{14 + i}</div>
+                          </div>
+                        );
+                      })}
                     </div>
 
-                    <h4 style={{ marginBottom: "var(--space-4)", fontSize: "0.875rem", color: "var(--color-text-secondary)" }}>
-                      Available Slots
-                    </h4>
-                    <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-2)", marginBottom: "var(--space-6)" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "var(--space-4)" }}>
+                      <div style={{ width: "6px", height: "6px", borderRadius: "50%", background: "var(--color-primary)", boxShadow: "0 0 8px rgba(197, 160, 89, 0.6)" }} />
+                      <h4 style={{ fontSize: "0.875rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--color-text-secondary)", margin: 0 }}>
+                        Available Slots
+                      </h4>
+                    </div>
+                    
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "var(--space-6)" }}>
                       {["10:00 AM", "1:30 PM", "3:00 PM"].map((time) => (
                         <div
                           key={time}
@@ -250,19 +272,27 @@ export default function BookingWidget() {
                             display: "flex",
                             alignItems: "center",
                             gap: "var(--space-3)",
-                            padding: "var(--space-3)",
-                            background: "var(--color-bg)",
+                            padding: "1rem",
+                            background: "var(--color-bg-secondary)",
                             border: "1px solid var(--glass-border)",
                             borderRadius: "var(--radius-md)",
                             cursor: "pointer",
-                            transition: "background 0.2s",
+                            transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
                           }}
-                          onMouseEnter={(e) => (e.currentTarget.style.background = "var(--color-bg-secondary)")}
-                          onMouseLeave={(e) => (e.currentTarget.style.background = "var(--color-bg)")}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = "var(--color-bg-tertiary)";
+                            e.currentTarget.style.borderColor = "var(--color-primary)";
+                            e.currentTarget.style.transform = "translateX(5px)";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = "var(--color-bg-secondary)";
+                            e.currentTarget.style.borderColor = "var(--glass-border)";
+                            e.currentTarget.style.transform = "translateX(0px)";
+                          }}
                         >
-                          <Clock size={16} color="var(--color-primary)" />
-                          <span style={{ fontWeight: 500 }}>{time}</span>
-                          <span style={{ marginLeft: "auto", fontSize: "0.75rem", color: "var(--color-text-secondary)" }}>EST</span>
+                          <Clock size={18} color="var(--color-primary)" />
+                          <span style={{ fontWeight: 600, fontSize: "1rem", color: "var(--color-text)" }}>{time}</span>
+                          <span style={{ marginLeft: "auto", fontSize: "0.75rem", fontFamily: "var(--font-mono)", color: "var(--color-text-secondary)", background: "var(--color-bg)", padding: "0.25rem 0.5rem", borderRadius: "4px", border: "1px solid var(--glass-border)" }}>EST</span>
                         </div>
                       ))}
                     </div>
@@ -274,13 +304,21 @@ export default function BookingWidget() {
                         border: "none",
                         color: "var(--color-text-secondary)",
                         cursor: "pointer",
-                        textDecoration: "underline",
                         marginTop: "auto",
                         textAlign: "center",
-                        width: "100%"
+                        width: "100%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "0.5rem",
+                        padding: "0.5rem",
+                        fontSize: "0.875rem",
+                        transition: "color 0.2s"
                       }}
+                      onMouseEnter={(e) => e.currentTarget.style.color = "var(--color-text)"}
+                      onMouseLeave={(e) => e.currentTarget.style.color = "var(--color-text-secondary)"}
                     >
-                      Back
+                      <ArrowLeft size={16} /> Back to Options
                     </button>
                   </motion.div>
                 )}
