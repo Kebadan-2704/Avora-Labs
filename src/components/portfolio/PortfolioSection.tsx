@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useCursor } from "@/providers/CursorProvider";
-import { ExternalLink } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,19 +31,19 @@ const PROJECTS = [
     title: "Costa Devices",
     category: "B2B Commerce",
     problem: "Poor product discoverability hindered enterprise sales.",
-    solution: "Deployed an engaging product showcase with advanced filtering and immersive UI.",
-    impact: "Boosted average session duration by 180%.",
+    solution: "Deployed an engaging product showcase with advanced filtering.",
+    impact: "Boosted session duration by 180%.",
     link: "https://costa-devices-kappa.vercel.app/",
-    tags: ["Enterprise", "Commerce", "UI/UX"],
+    tags: ["Enterprise", "Commerce"],
   },
   {
-    title: "TPH Management System",
+    title: "TPH Management",
     category: "Internal Tooling",
     problem: "Manual data handling led to severe operational inefficiencies.",
-    solution: "Built a secure, centralized administrative dashboard for organizational data.",
-    impact: "Automated 40+ hours per week of manual administration.",
+    solution: "Built a secure, centralized administrative dashboard.",
+    impact: "Automated 40+ hours/week.",
     link: "https://tph-management-system.vercel.app/login",
-    tags: ["Admin", "System", "Secure"],
+    tags: ["Admin", "System"],
   },
   {
     title: "Amos Frank",
@@ -59,6 +59,7 @@ const PROJECTS = [
 export default function PortfolioSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
   const { enterHover, leaveHover } = useCursor();
 
   useEffect(() => {
@@ -73,13 +74,13 @@ export default function PortfolioSection() {
         );
       }
 
-      // Project cards
-      const cards = sectionRef.current?.querySelectorAll(".project-card");
-      cards?.forEach((card) => {
+      // Bento cards
+      const cards = gridRef.current?.querySelectorAll(".bento-item");
+      cards?.forEach((card, index) => {
         gsap.fromTo(card, 
-          { y: 50, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.8, ease: "power3.out",
-            scrollTrigger: { trigger: card, start: "top 85%" }
+          { y: 50, opacity: 0, scale: 0.95 },
+          { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: "power3.out", delay: index * 0.1,
+            scrollTrigger: { trigger: gridRef.current, start: "top 80%" }
           }
         );
       });
@@ -95,6 +96,63 @@ export default function PortfolioSection() {
       className="section"
       style={{ background: "var(--color-bg-secondary)" }}
     >
+      <style>{`
+        .bento-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: var(--space-4);
+        }
+        .bento-item {
+          border-radius: var(--radius-xl);
+          background: var(--color-bg);
+          border: 1px solid var(--glass-border);
+          padding: var(--space-8);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          transition: all 0.4s var(--ease-out-expo);
+          overflow: hidden;
+          position: relative;
+          cursor: pointer;
+          text-decoration: none;
+          color: inherit;
+        }
+        .bento-item:hover {
+          border-color: var(--color-primary);
+          transform: translateY(-4px);
+          box-shadow: var(--shadow-lg);
+        }
+        .bento-item:hover .arrow-icon {
+          transform: translate(4px, -4px);
+          color: var(--color-primary) !important;
+        }
+        
+        .arrow-icon {
+          transition: all 0.3s ease;
+        }
+
+        /* Specific Grid Placements */
+        .bento-item-0 { grid-column: span 2; grid-row: span 2; }
+        .bento-item-1 { grid-column: span 2; grid-row: span 1; }
+        .bento-item-2 { grid-column: span 1; grid-row: span 1; }
+        .bento-item-3 { grid-column: span 1; grid-row: span 1; }
+        .bento-item-4 { grid-column: span 4; grid-row: span 1; }
+
+        @media (max-width: 1024px) {
+          .bento-grid { grid-template-columns: repeat(2, 1fr); }
+          .bento-item-0 { grid-column: span 2; grid-row: span 1; }
+          .bento-item-1 { grid-column: span 2; grid-row: span 1; }
+          .bento-item-2 { grid-column: span 1; grid-row: span 1; }
+          .bento-item-3 { grid-column: span 1; grid-row: span 1; }
+          .bento-item-4 { grid-column: span 2; grid-row: span 1; }
+        }
+
+        @media (max-width: 640px) {
+          .bento-grid { grid-template-columns: 1fr; }
+          .bento-item { grid-column: span 1 !important; grid-row: span 1 !important; }
+        }
+      `}</style>
+
       <div className="container">
         {/* Header */}
         <div ref={headingRef} style={{ marginBottom: "var(--space-16)" }}>
@@ -107,155 +165,98 @@ export default function PortfolioSection() {
           </p>
         </div>
 
-        {/* Projects Grid */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-12)" }}>
+        {/* Bento Grid */}
+        <div ref={gridRef} className="bento-grid">
           {PROJECTS.map((project, i) => (
-            <div
+            <a
               key={project.title}
-              className="project-card"
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr",
-                gap: "var(--space-8)",
-              }}
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`bento-item bento-item-${i}`}
+              onMouseEnter={() => enterHover("pointer")}
+              onMouseLeave={leaveHover}
             >
-              {/* Info row */}
-              <div
+              {/* Background gradient on hover */}
+              <div 
                 style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  gap: "var(--space-8)",
-                  alignItems: "flex-end",
-                  flexWrap: "wrap"
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  background: "linear-gradient(135deg, rgba(197, 160, 89, 0.05) 0%, transparent 100%)",
+                  opacity: 0,
+                  transition: "opacity 0.4s ease",
+                  zIndex: 0,
                 }}
-              >
-                {/* Left: title + description */}
-                <div style={{ flex: 1, minWidth: "300px" }}>
-                  <div
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "0.8125rem",
-                      letterSpacing: "0.08em",
-                      textTransform: "uppercase",
-                      color: "var(--color-primary)",
-                      marginBottom: "var(--space-2)",
-                    }}
-                  >
-                    {String(i + 1).padStart(2, "0")} — {project.category}
-                  </div>
-                  <h3
-                    style={{
-                      marginBottom: "var(--space-6)",
-                      fontSize: "2rem",
-                      fontWeight: 800,
-                    }}
-                  >
+                className="hover-bg"
+              />
+
+              <div style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", height: "100%" }}>
+                {/* Top Section: Category and Arrow */}
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "var(--space-6)" }}>
+                  <span style={{ 
+                    fontFamily: "var(--font-mono)", 
+                    fontSize: "0.75rem", 
+                    color: "var(--color-primary)", 
+                    textTransform: "uppercase", 
+                    letterSpacing: "0.1em" 
+                  }}>
+                    {project.category}
+                  </span>
+                  <ArrowUpRight className="arrow-icon" size={24} style={{ color: "var(--color-text-muted)" }} />
+                </div>
+
+                {/* Middle Section: Title & Solution */}
+                <div style={{ flex: 1, marginBottom: "var(--space-8)" }}>
+                  <h3 style={{ 
+                    fontSize: i === 0 ? "clamp(2rem, 4vw, 3rem)" : i === 4 ? "clamp(1.75rem, 3vw, 2.5rem)" : "1.75rem", 
+                    marginBottom: "var(--space-4)", 
+                    lineHeight: 1.1, 
+                    letterSpacing: "-0.02em" 
+                  }}>
                     {project.title}
                   </h3>
-
-                  <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "var(--space-6)" }}>
-                    <div>
-                      <strong style={{ color: "var(--color-text)", fontSize: "0.875rem", textTransform: "uppercase", letterSpacing: "0.05em", display: "block", marginBottom: "0.25rem" }}>The Problem</strong>
-                      <p style={{ margin: 0, fontSize: "1rem" }}>{project.problem}</p>
-                    </div>
-                    <div>
-                      <strong style={{ color: "var(--color-text)", fontSize: "0.875rem", textTransform: "uppercase", letterSpacing: "0.05em", display: "block", marginBottom: "0.25rem" }}>The Solution</strong>
-                      <p style={{ margin: 0, fontSize: "1rem" }}>{project.solution}</p>
-                    </div>
-                    <div style={{ padding: "1rem", background: "rgba(197, 160, 89, 0.1)", borderRadius: "var(--radius-sm)", borderLeft: "3px solid var(--color-primary)" }}>
-                      <strong style={{ color: "var(--color-text)", fontSize: "0.875rem", textTransform: "uppercase", letterSpacing: "0.05em", display: "block", marginBottom: "0.25rem" }}>Business Impact</strong>
-                      <p style={{ margin: 0, fontSize: "1.125rem", fontWeight: 600, color: "var(--color-text)" }}>{project.impact}</p>
-                    </div>
-                  </div>
-
-                  {/* Tags */}
-                  <div style={{ display: "flex", gap: "var(--space-2)", flexWrap: "wrap", marginTop: "var(--space-4)" }}>
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        style={{
-                          padding: "0.25rem 0.75rem",
-                          borderRadius: "var(--radius-full)",
-                          background: "var(--color-bg)",
-                          border: "1px solid var(--glass-border)",
-                          fontFamily: "var(--font-mono)",
-                          fontSize: "0.75rem",
-                          color: "var(--color-text-secondary)",
-                        }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  <p style={{ 
+                    fontSize: i === 0 || i === 4 ? "1.125rem" : "1rem", 
+                    color: "var(--color-text-secondary)", 
+                    lineHeight: 1.6 
+                  }}>
+                    {project.solution}
+                  </p>
                 </div>
 
-                {/* Right: Button */}
-                <div style={{ flexShrink: 0 }}>
-                  <button 
-                    onClick={() => window.open(project.link, "_blank")}
-                    onMouseEnter={() => enterHover("pointer")}
-                    onMouseLeave={leaveHover}
-                    className="btn-outline"
-                    style={{
-                      background: "var(--color-bg)",
-                      gap: "0.5rem"
-                    }}
-                  >
-                    View Full Website
-                    <ExternalLink size={16} />
-                  </button>
-                </div>
-              </div>
-
-              {/* Iframe Website Container */}
-              <div
-                style={{
-                  width: "100%",
-                  height: "80vh",
-                  minHeight: "600px",
-                  maxHeight: "900px",
-                  borderRadius: "var(--radius-xl)",
-                  overflow: "hidden",
-                  position: "relative",
-                  background: "var(--color-bg-tertiary)",
-                  border: "1px solid var(--glass-border)",
-                  boxShadow: "var(--shadow-md)",
-                }}
-              >
-                <div style={{
-                  background: "rgba(250, 249, 246, 0.4)",
-                  height: "32px",
-                  borderBottom: "1px solid var(--glass-border)",
+                {/* Bottom Section: Metric */}
+                <div style={{ 
+                  paddingTop: "var(--space-4)", 
+                  borderTop: "1px solid var(--glass-border)", 
+                  marginTop: "auto",
                   display: "flex",
-                  alignItems: "center",
-                  padding: "0 12px",
-                  gap: "6px"
+                  flexDirection: "column",
+                  gap: "var(--space-2)"
                 }}>
-                  <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#FF5F56" }} />
-                  <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#FFBD2E" }} />
-                  <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#27C93F" }} />
-                  <div style={{ flex: 1, textAlign: "center", fontSize: "0.65rem", fontFamily: "var(--font-mono)", color: "var(--color-text-muted)" }}>
-                    {project.link.replace("https://", "")}
+                  <strong style={{ 
+                    fontSize: "0.75rem", 
+                    textTransform: "uppercase", 
+                    letterSpacing: "0.05em", 
+                    color: "var(--color-text-muted)" 
+                  }}>
+                    Business Impact
+                  </strong>
+                  <div style={{ 
+                    fontSize: i === 0 ? "1.5rem" : "1.125rem", 
+                    fontWeight: 600, 
+                    color: "var(--color-text)" 
+                  }}>
+                    {project.impact}
                   </div>
                 </div>
-                <iframe 
-                  src={project.link} 
-                  title={project.title}
-                  loading="lazy"
-                  style={{
-                    width: "100%",
-                    height: "calc(100% - 32px)",
-                    border: "none",
-                    pointerEvents: "auto",
-                  }}
-                />
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
     </section>
   );
 }
-

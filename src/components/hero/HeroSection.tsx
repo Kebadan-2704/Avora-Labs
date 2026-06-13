@@ -242,7 +242,7 @@ export default function HeroSection() {
             maxWidth: "900px",
             marginTop: 0,
             marginBottom: "0.5rem",
-            fontSize: "clamp(2.5rem, 6vw, 5.5rem)",
+            fontSize: "clamp(3.5rem, 7.5vw, 6.5rem)",
             fontWeight: 900,
             letterSpacing: "-0.05em",
             lineHeight: 0.95,
