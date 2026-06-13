@@ -110,8 +110,9 @@ export default function PortfolioSection() {
         }
         .bento-item {
           border-radius: var(--radius-xl);
-          background: var(--color-bg);
-          border: 1px solid var(--glass-border);
+          background: var(--color-text); /* Dark mode cards */
+          color: var(--color-bg); /* Light text */
+          border: 1px solid rgba(250, 249, 246, 0.1);
           padding: var(--space-8);
           display: flex;
           flex-direction: column;
@@ -121,12 +122,11 @@ export default function PortfolioSection() {
           position: relative;
           cursor: pointer;
           text-decoration: none;
-          color: inherit;
         }
         .bento-item:hover {
           border-color: var(--color-primary);
           transform: translateY(-4px);
-          box-shadow: var(--shadow-lg);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
         .bento-item:hover .arrow-icon {
           transform: translate(4px, -4px);
@@ -157,6 +157,10 @@ export default function PortfolioSection() {
           .bento-grid { grid-template-columns: 1fr; }
           .bento-item { grid-column: span 1 !important; grid-row: span 1 !important; }
         }
+        .bento-item:hover .bento-bg-img {
+          opacity: 0.7 !important;
+          transform: scale(1.05);
+        }
       `}</style>
 
       <div className="container">
@@ -183,21 +187,21 @@ export default function PortfolioSection() {
               onMouseEnter={() => enterHover("pointer")}
               onMouseLeave={leaveHover}
             >
-              {/* Background gradient on hover */}
-              <div 
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  background: "linear-gradient(135deg, rgba(197, 160, 89, 0.05) 0%, transparent 100%)",
-                  opacity: 0,
-                  transition: "opacity 0.4s ease",
-                  zIndex: 0,
-                }}
-                className="hover-bg"
-              />
+              {/* Immersive Image Background */}
+              <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  style={{ objectFit: "cover", opacity: 0.4, transition: "opacity 0.4s ease" }}
+                  className="bento-bg-img"
+                />
+                <div style={{ 
+                  position: "absolute", 
+                  inset: 0, 
+                  background: "linear-gradient(to bottom, rgba(22, 22, 22, 0.2) 0%, var(--color-text) 100%)" 
+                }} />
+              </div>
 
               <div style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", height: "100%" }}>
                 {/* Top Section: Category and Arrow */}
@@ -211,50 +215,34 @@ export default function PortfolioSection() {
                   }}>
                     {project.category}
                   </span>
-                  <ArrowUpRight className="arrow-icon" size={24} style={{ color: "var(--color-text-muted)" }} />
+                  <ArrowUpRight className="arrow-icon" size={24} style={{ color: "rgba(250, 249, 246, 0.5)" }} />
                 </div>
 
                 {/* Middle Section: Title & Solution */}
-                <div style={{ flex: 1, marginBottom: "var(--space-8)" }}>
+                <div style={{ flex: 1, marginBottom: "var(--space-12)" }}>
                   <h3 style={{ 
-                    fontSize: i === 0 ? "clamp(2rem, 4vw, 3rem)" : i === 4 ? "clamp(1.75rem, 3vw, 2.5rem)" : "1.75rem", 
+                    fontSize: i === 0 ? "clamp(2rem, 4vw, 3.5rem)" : i === 4 ? "clamp(1.75rem, 3vw, 3rem)" : "2rem", 
                     marginBottom: "var(--space-4)", 
                     lineHeight: 1.1, 
-                    letterSpacing: "-0.02em" 
+                    letterSpacing: "-0.02em",
+                    color: "var(--color-bg)"
                   }}>
                     {project.title}
                   </h3>
                   <p style={{ 
                     fontSize: i === 0 || i === 4 ? "1.125rem" : "1rem", 
-                    color: "var(--color-text-secondary)", 
+                    color: "rgba(250, 249, 246, 0.7)", 
                     lineHeight: 1.6,
-                    marginBottom: "var(--space-6)"
+                    maxWidth: "80%"
                   }}>
                     {project.solution}
                   </p>
-
-                  {/* 3D Visual */}
-                  <div style={{
-                    width: "100%",
-                    height: i === 0 ? "400px" : i === 4 ? "300px" : "200px",
-                    position: "relative",
-                    borderRadius: "var(--radius-lg)",
-                    overflow: "hidden",
-                    border: "1px solid rgba(250, 249, 246, 0.05)",
-                  }}>
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      style={{ objectFit: "cover", objectPosition: "center" }}
-                    />
-                  </div>
                 </div>
 
                 {/* Bottom Section: Metric */}
                 <div style={{ 
                   paddingTop: "var(--space-4)", 
-                  borderTop: "1px solid var(--glass-border)", 
+                  borderTop: "1px solid rgba(250, 249, 246, 0.1)", 
                   marginTop: "auto",
                   display: "flex",
                   flexDirection: "column",
@@ -264,14 +252,14 @@ export default function PortfolioSection() {
                     fontSize: "0.75rem", 
                     textTransform: "uppercase", 
                     letterSpacing: "0.05em", 
-                    color: "var(--color-text-muted)" 
+                    color: "rgba(250, 249, 246, 0.5)" 
                   }}>
                     Business Impact
                   </strong>
                   <div style={{ 
-                    fontSize: i === 0 ? "1.5rem" : "1.125rem", 
+                    fontSize: i === 0 ? "1.75rem" : "1.25rem", 
                     fontWeight: 600, 
-                    color: "var(--color-text)" 
+                    color: "var(--color-primary)" 
                   }}>
                     {project.impact}
                   </div>
