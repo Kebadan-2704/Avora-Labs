@@ -212,9 +212,9 @@ export default function PortfolioSection() {
               <div
                 style={{
                   width: "100%",
-                  height: "80vh",
-                  minHeight: "600px",
-                  maxHeight: "900px",
+                  height: "55vh",
+                  minHeight: "350px",
+                  maxHeight: "550px",
                   borderRadius: "var(--radius-xl)",
                   overflow: "hidden",
                   position: "relative",
