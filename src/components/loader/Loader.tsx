@@ -10,6 +10,7 @@ interface LoaderProps {
 export default function Loader({ onComplete }: LoaderProps) {
   const loaderRef = useRef<HTMLDivElement>(null);
   const brandRef = useRef<HTMLDivElement>(null);
+  const progressLineRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // split brand text for staggered animation
@@ -48,10 +49,29 @@ export default function Loader({ onComplete }: LoaderProps) {
       });
     }
 
-    // Pause briefly on brand name
-    tl.to({}, { duration: 1.2 });
+    // Animate the progress bar horizontally
+    if (progressLineRef.current) {
+      tl.to(progressLineRef.current, {
+        scaleX: 1,
+        duration: 1.5,
+        ease: "power3.inOut"
+      }, "-=0.8"); // Start roughly when the letters start appearing
+    }
 
-    // Fade out brand name before exit
+    // Pause briefly
+    tl.to({}, { duration: 0.5 });
+
+    // Fade out both brand name and progress line before exit
+    tl.to(
+      progressLineRef.current,
+      {
+        opacity: 0,
+        y: -10,
+        duration: 0.4,
+        ease: "power2.in"
+      }
+    );
+
     if (brandRef.current) {
       tl.to(brandRef.current.children, {
         y: -30,
@@ -59,7 +79,7 @@ export default function Loader({ onComplete }: LoaderProps) {
         duration: 0.4,
         ease: "power2.in",
         stagger: 0.03
-      });
+      }, "<");
     }
 
     return () => {
@@ -82,17 +102,13 @@ export default function Loader({ onComplete }: LoaderProps) {
         overflow: "hidden"
       }}
     >
-      <div style={{ position: "relative", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1.5rem" }}>
         {/* Brand Reveal */}
         <div
           style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
             whiteSpace: "nowrap",
             overflow: "hidden",
-            padding: "20px"
+            padding: "0 20px"
           }}
         >
           <div
@@ -109,6 +125,28 @@ export default function Loader({ onComplete }: LoaderProps) {
           >
             AVORA LABS
           </div>
+        </div>
+
+        {/* Sleek Progress Line directly below */}
+        <div style={{
+          width: "100%",
+          maxWidth: "350px",
+          height: "2px",
+          background: "rgba(197,160,89, 0.15)",
+          borderRadius: "4px",
+          overflow: "hidden"
+        }}>
+          <div
+            ref={progressLineRef}
+            style={{
+              width: "100%",
+              height: "100%",
+              background: "var(--color-primary)",
+              transformOrigin: "left",
+              transform: "scaleX(0)",
+              willChange: "transform"
+            }}
+          />
         </div>
       </div>
     </div>
