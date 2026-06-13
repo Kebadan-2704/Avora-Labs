@@ -286,7 +286,7 @@ export default function HeroSection() {
             fontWeight: 400,
           }}
         >
-          Custom websites, AI agents, business automation and scalable software for ambitious companies. We don't just write code — we build growth engines.
+          Custom websites, AI agents, business automation and scalable software for ambitious companies. We don&apos;t just write code — we build growth engines.
         </p>
 
         {/* CTAs */}

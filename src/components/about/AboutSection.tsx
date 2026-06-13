@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 
 
@@ -58,8 +57,8 @@ export default function AboutSection() {
           >
             <div style={{ flex: "1 1 50%", minWidth: "320px" }}>
             <h2 style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}>
-              "We don't build toys.<br />
-              We build engines that drive revenue."
+              &quot;We don&apos;t build toys.<br />
+              We build engines that drive revenue.&quot;
             </h2>
             </div>
             <div style={{ flex: "1 1 40%", minWidth: "320px", display: "flex", flexDirection: "column", justifyContent: "flex-end", gap: "var(--space-6)" }}>
@@ -74,7 +73,7 @@ export default function AboutSection() {
                   your most reliable employee, and the foundation of your digital growth.
                 </p>
                 <p className="text-large">
-                  That is why we don't just write code. We partner with you to understand your business model,
+                  That is why we don&apos;t just write code. We partner with you to understand your business model,
                   identify the bottlenecks, and engineer digital systems that solve real problems.
                 </p>
               </div>
