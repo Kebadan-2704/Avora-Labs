@@ -22,11 +22,11 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Avora Labs" }],
   creator: "Avora Labs",
-  metadataBase: new URL("https://avoralabs.com"),
+  metadataBase: new URL("https://avora-labs.vercel.app"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://avoralabs.com",
+    url: "https://avora-labs.vercel.app",
     siteName: "Avora Labs",
     title: "Avora Labs | Engineering Digital Excellence",
     description:
@@ -69,9 +69,9 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "Avora Labs",
-    url: "https://avoralabs.com",
-    logo: "https://avoralabs.com/Transparent%20Logo.png",
-    image: "https://avoralabs.com/Transparent%20Logo.png",
+    url: "https://avora-labs.vercel.app",
+    logo: "https://avora-labs.vercel.app/Transparent%20Logo.png",
+    image: "https://avora-labs.vercel.app/Transparent%20Logo.png",
     description:
       "Premium software engineering and AI automation agency based in India. We engineer bespoke web platforms, mobile apps, and enterprise architecture.",
     address: {

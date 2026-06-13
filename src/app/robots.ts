@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://avoralabs.com/sitemap.xml",
+    sitemap: "https://avora-labs.vercel.app/sitemap.xml",
   };
 }
