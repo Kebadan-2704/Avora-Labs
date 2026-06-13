@@ -8,7 +8,14 @@ import ClientMarquee from "./ClientMarquee";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const STATS = [
+type Stat = {
+  value: number;
+  suffix: string;
+  label: string;
+  prefix?: string;
+};
+
+const STATS: Stat[] = [
   { value: 150, suffix: "+", label: "Projects Delivered" },
   { value: 80, suffix: "+", label: "Global Clients" },
   { value: 200, suffix: "+", label: "Automations Built" },
